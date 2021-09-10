@@ -1,0 +1,38 @@
+
+.toolbar-wrap{
+    margin-left: auto;
+    display: flex;
+    height: 70px;
+    .annotate-btn{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .tools{
+        display: flex;
+        align-items: center;
+        width: 35%;
+        justify-content: space-between;
+        >div{
+            display: flex;
+            align-items: center;
+        }
+        .color-picker{
+            width: 25px;
+        }
+        d-checkbox{
+            margin:0 5px;
+        }
+        input[disabled] {
+            opacity: 0.5;
+        }
+        small{
+            &:first-of-type{
+                margin-right: 5px;
+            }
+        }
+    }
+    d-select{
+        width: 150px;
+        margin:0 10px;
+    }
+}

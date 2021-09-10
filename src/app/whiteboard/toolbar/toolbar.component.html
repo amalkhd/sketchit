@@ -1,0 +1,61 @@
+<div class="toolbar-wrap align-items-center justify-content-end">
+  <div class="tools" *ngIf="edit">
+    <div>
+      <small>Color</small>
+      <input class="color-picker" (change)="onChange($event)" type="color" name="color" [(ngModel)]="color">
+    </div>
+    <div>
+      <mat-checkbox (change)="onCheck($event)" [(ngModel)]="isFillEnabled" class="example-margin">Enable Fill
+      </mat-checkbox>
+    </div>
+    <div>
+      <input [disabled]="!isFillEnabled" class="color-picker" (change)="onChange($event, 'fill')" type="color"
+        name="fillColor" [(ngModel)]="fillColor">
+    </div>
+
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Choose tool</mat-label>
+        <mat-select (selectionChange)="onSelect($event)" [(ngModel)]="wbService.type">
+          <mat-option *ngFor="let tool of tools" [value]="tool">
+            {{tool}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button [disabled]="!wbService.isActionDisabled('undo')" matTooltip="Undo" (click)="wbService.action.next('undo')" mat-icon-button
+      aria-label="Example icon button with a vertical three dot icon">
+      <mat-icon>undo</mat-icon>
+    </button>
+
+    <button [disabled]="!wbService.isActionDisabled('redo')" matTooltip="Redo" (click)="wbService.action.next('redo')" mat-icon-button
+      aria-label="Example icon button with a vertical three dot icon">
+      <mat-icon>redo</mat-icon>
+    </button>
+
+    <button matTooltip="Download" (click)="wbService.action.next('download')" mat-icon-button
+      aria-label="Example icon button with a vertical three dot icon">
+      <mat-icon>save_alt</mat-icon>
+    </button>
+
+    <button (click)="wbService.action.next('clear')" mat-stroked-button color="warn"
+      aria-label="Example icon button with a vertical three dot icon">
+      Clear
+    </button>
+
+  </div>
+  <div class="me-2 ms-2">
+    <button (click)="edit = true;editClicked.emit(true)" mat-button color="primary" *ngIf="!edit; else cancel">
+      <span class="material-icons">
+        gesture
+        </span>
+      Draw</button>
+    <ng-template #cancel>
+      <button matTooltip="Cancel" (click)="edit = false;editClicked.emit(false);isFillEnabled = false" mat-icon-button
+      aria-label="Cancel">
+      <mat-icon>clear</mat-icon>
+    </button>
+    </ng-template>
+  </div>
+</div>

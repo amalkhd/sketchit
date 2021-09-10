@@ -1,0 +1,4 @@
+
+    <canvas (click)="onClick($event)" #mainCanvas [height]="parentElement.offsetHeight" [width]="parentElement.offsetWidth"></canvas>
+    <canvas class="test" #testCanvas (click)="onClick($event)" [height]="parentElement.offsetHeight" [width]="parentElement.offsetWidth"></canvas>
+    <input autofocus [(ngModel)]="input.text" (keyup.enter)="addText()" *ngIf="input.enabled" type="text" [style.left.px]="input.x" [style.top.px]="input.y">
